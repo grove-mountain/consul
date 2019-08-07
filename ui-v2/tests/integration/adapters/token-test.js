@@ -37,9 +37,13 @@ module('Integration | Adapter | token', function(hooks) {
     const client = this.owner.lookup('service:client/http');
     const expected = `PUT /v1/acl/token?dc=${dc}`;
     const actual = adapter
-      .requestForCreateRecord(client.url, {
-        Datacenter: dc,
-      })
+      .requestForCreateRecord(
+        client.url,
+        {},
+        {
+          Datacenter: dc,
+        }
+      )
       .split('\n')[0];
     assert.equal(actual, expected);
   });
@@ -48,10 +52,14 @@ module('Integration | Adapter | token', function(hooks) {
     const client = this.owner.lookup('service:client/http');
     const expected = `PUT /v1/acl/token/${id}?dc=${dc}`;
     const actual = adapter
-      .requestForUpdateRecord(client.url, {
-        Datacenter: dc,
-        AccessorID: id,
-      })
+      .requestForUpdateRecord(
+        client.url,
+        {},
+        {
+          Datacenter: dc,
+          AccessorID: id,
+        }
+      )
       .split('\n')[0];
     assert.equal(actual, expected);
   });
@@ -60,11 +68,15 @@ module('Integration | Adapter | token', function(hooks) {
     const client = this.owner.lookup('service:client/http');
     const expected = `PUT /v1/acl/update?dc=${dc}`;
     const actual = adapter
-      .requestForUpdateRecord(client.url, {
-        Rules: 'key {}',
-        Datacenter: dc,
-        AccessorID: id,
-      })
+      .requestForUpdateRecord(
+        client.url,
+        {},
+        {
+          Rules: 'key {}',
+          Datacenter: dc,
+          AccessorID: id,
+        }
+      )
       .split('\n')[0];
     assert.equal(actual, expected);
   });
@@ -73,10 +85,14 @@ module('Integration | Adapter | token', function(hooks) {
     const client = this.owner.lookup('service:client/http');
     const expected = `DELETE /v1/acl/token/${id}?dc=${dc}`;
     const actual = adapter
-      .requestForDeleteRecord(client.url, {
-        Datacenter: dc,
-        AccessorID: id,
-      })
+      .requestForDeleteRecord(
+        client.url,
+        {},
+        {
+          Datacenter: dc,
+          AccessorID: id,
+        }
+      )
       .split('\n')[0];
     assert.equal(actual, expected);
   });
